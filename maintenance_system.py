@@ -67,7 +67,7 @@ def export_service_report(file="maintenance.json"):
 
 
 def write_scratch_copy():
-    """Create a temporary JSON copy of the asset records."""
+    """Create a secure temporary JSON copy of asset records."""
     with tempfile.NamedTemporaryFile(
         mode="w",
         suffix=".json",
