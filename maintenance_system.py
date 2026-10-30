@@ -1,3 +1,6 @@
+
+"""Manage warehouse assets, service schedules, and maintenance alerts."""
+
 import json
 import tempfile
 from datetime import datetime, timedelta
@@ -5,7 +8,7 @@ from datetime import datetime, timedelta
 
 # Global state
 assets = {}
-SERVICE_INTERVAL_DAYS = 90
+config = {"service_interval_days": 90}
 
 
 def register_asset(asset_id, machine_type, logs=None):
@@ -43,7 +46,7 @@ def due_for_inspection():
         )
 
         if datetime.now() - last > timedelta(
-            days=SERVICE_INTERVAL_DAYS
+            days=config["service_interval_days"]
         ):
             due.append(asset_id)
 
@@ -52,8 +55,7 @@ def due_for_inspection():
 
 def change_interval(days):
     """Change the service interval in days."""
-    global SERVICE_INTERVAL_DAYS
-    SERVICE_INTERVAL_DAYS = days
+    config["service_interval_days"] = days
 
 
 def export_service_report(file="maintenance.json"):
