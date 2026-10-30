@@ -1,9 +1,7 @@
-
-"""Maintenance management system for tracking warehouse assets."""
-
 import json
 import tempfile
 from datetime import datetime, timedelta
+
 
 # Global state
 assets = {}
